@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span {
+            display: inline-block;
+            font-size: 30px;
+            text-align: center;
+            padding: 0 15px;
+            margin: 2px 0;
+            margin-right: 10px;
+            height: 50px;
+            line-height: 50px;
+            background-color: red;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" value="">
+    <button id="leftEnter">左侧入</button>
+    <button id="rightEnter">右侧入</button>
+    <button id="leftleave">左侧出</button>
+    <button id="rightleave">右侧出</button>
+    <div></div>
+
+    <script>
+        var input = document.getElementsByTagName('input')[0];
+        var leftEnter = document.getElementById("leftEnter");
+        var rightEnter = document.getElementById("rightEnter");
+        var leftleave = document.getElementById("leftleave");
+        var rightleave = document.getElementById('rightleave');
+        var div = document.getElementsByTagName('div')[0];
+        let  arr = [];
+        function click() {
+            rightEnter.onclick = function () {
+                arr.push(input.value);
+                renderList(arr);
+                console.log(arr);
+            }
+            leftEnter.onclick = function () {
+                arr.unshift(input.value);
+                console.log(arr);
+                renderList(arr);
+            }
+            leftleave.onclick = function () {
+                arr.shift();
+                renderList(arr);
+
+                }
+            rightleave.onclick = function () {
+                arr.pop();
+                renderList(arr);
+
+            }
+        }
+            
+        
+        function renderList(arr) {
+            div.innerHTML = "";
+            for (var i = 0; i < arr.length; i++) {
+                var span = document.createElement('span');
+                span.innerHTML = arr[i];
+                div.appendChild(span);
+            }
+        }
+        click();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #left {
+      position: absolute;
+      left: 200px;
+
+    }
+
+    #right {
+      position: absolute;
+      left: 500px;
+    }
+
+    button {
+      border-radius: 5px;
+    }
+
+    span {
+      background: red;
+      color: white;
+      text-align: center;
+      font-size: 30px;
+      height: 50px;
+      line-height: 50px;
+      padding: 0 15px;
+      margin: 2px 0;
+      margin-right: 10px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <input id="txt-input" type="text" />
+  <input type="button" value="左侧入" />
+  <input type="button" value="左侧出" />
+  <input type="button" value="右侧入" />
+  <input type="button" value="右侧出" />
+  <div id="container"></div>
+  <script>
+    //获取元素
+    let input = document.getElementsByTagName('input')[0];
+    let leftBtnEn = document.getElementsByTagName('input')[1];
+    let leftBtnOut = document.getElementsByTagName('input')[2];
+    let rightBtnEn = document.getElementsByTagName('input')[3];
+    let rightBtnOut = document.getElementsByTagName('input')[4];
+    let div1 = document.getElementById('container');
+    // let arr = [];
+    function click() {
+      let arr = [];
+      leftBtnEn.onclick = () => {
+        arr.unshift(input.value);
+        renderList(arr);
+        console.log(arr)
+      }
+      leftBtnOut.onclick = ()=> {
+        arr.shift();
+        renderList(arr);
+      }
+      rightBtnEn.onclick = ()=> {
+        arr.push(input.value);
+        renderList(arr);
+      }
+      rightBtnOut.onclick = ()=> {
+        arr.pop();
+        renderList(arr);
+      }
+    }
+    function renderList(arr) {
+      div1.innerHTML = "";
+      for (let i = 0; i < arr.length; i++) {
+        let span = document.createElement('span');
+        span.innerHTML = arr[i];
+        div1.appendChild(span);
+      }
+    }
+    click()
+
+  </script>
+</body>
+
+</html>

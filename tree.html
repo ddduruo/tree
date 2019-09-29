@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+   class Node{
+     constructor(key){
+       this.key = key;
+       this.left = null;
+       this.right = null;
+     }
+   }
+
+   class Bst{
+     constructor(tree){
+       this.tree = null;
+     }
+
+     insertNode(node,key){
+       console.log(node)
+      if(key > node.key){
+        if(node.right == null){
+          node.right = new Node(key); //需要建立的是节点
+        }else{
+          this.insertNode(node.right,key);
+        }
+      }else{
+        if(node.left == null){
+          node.left = new Node(key);
+        }else{
+          this.insertNode(node.left,key);
+        }
+      }
+     }
+
+     
+     insert(key){
+       if(this.tree == null){
+         this.tree = new Node(key);
+       }else{
+        this.insertNode(this.tree,key);
+       }
+     }
+     
+     inOrderTraverse(node,callback){
+       if(node){
+         this.inOrderTraverse(node.left,callback);
+         callback(node.key);
+         this.inOrderTraverse(node.right,callback);
+       }
+     }
+
+     preOrderTraverse(node,callback){
+      if(node){
+        callback(node.key);
+        this.preOrderTraverse(node.left,callback);
+        this.preOrderTraversez(node.right,callback);
+      }
+     } //先序遍历
+
+     postOrderTraverse(node,callback){
+       if(node){
+         postOrderTraverse(node.left,callback);
+         postOrderTraverse(node.right,callback);
+         callback(node.key);
+       }
+     } //后续遍历
+     min(){
+       let node = this.tree;
+       while(node.left){
+         node = node.left;
+       }
+       return node.key;
+     }
+
+     max(){
+       let node = this.tree;
+       while(node.right){
+         node = node.right;
+       }
+       return node.key;
+     }
+     print(){
+       return this.tree
+     }
+   }
+   const tree = new Bst()
+   tree.insert(5);
+   tree.insert(4);
+   tree.insert(8);
+   tree.insert(2);
+   tree.insert(6);
+   console.log(tree.print())
+  </script>
+</body>
+</html>
